@@ -1,0 +1,2271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ihya Socials - Reviving Islamic Product Brands</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #f5f0e8;
+        --cream-light: #faf7f2;
+        --cream-dark: #ede4d3;
+        --plum: #5c3d5e;
+        --plum-dark: #3d2440;
+        --plum-light: #ede0ee;
+        --rose: #c9967a;
+        --rose-light: #f5e8e0;
+        --sage: #87997a;
+        --sage-light: #e8eee5;
+        --brown: #5c3d2e;
+        --brown-light: #8b5e4a;
+        --text: #3d2a1e;
+        --text-light: #7a6358;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Jost", sans-serif;
+        background: var(--cream);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      /* ── NOISE TEXTURE OVERLAY ── */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0.4;
+      }
+
+      /* ── NAVIGATION ── */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 900;
+        padding: 0 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+        background: rgba(245, 240, 232, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(92, 61, 94, 0.08);
+        transition: all 0.3s ease;
+      }
+
+      nav.scrolled {
+        height: 60px;
+        box-shadow: 0 2px 20px rgba(92, 61, 94, 0.08);
+      }
+
+      .nav-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--plum);
+        letter-spacing: 0.02em;
+        text-decoration: none;
+      }
+
+      .nav-logo span {
+        color: var(--rose);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-family: "Jost", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-light);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--rose);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--plum);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      /* ── SECTIONS ── */
+      section {
+        display: none;
+        min-height: 100vh;
+        padding-top: 72px;
+      }
+
+      section.active {
+        display: block;
+      }
+
+      /* ── HOME SECTION ── */
+      #home {
+        display: none;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #home.active {
+        display: block;
+      }
+
+      .home-hero {
+        min-height: calc(100vh - 72px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 6% 5% 4%;
+        gap: 4rem;
+      }
+
+      .hero-text {
+        animation: fadeUp 0.8s ease both;
+      }
+
+      .hero-eyebrow {
+        font-family: "Jost", sans-serif;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rose);
+        margin-bottom: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .hero-eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: var(--rose);
+      }
+
+      .hero-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(3rem, 5vw, 5rem);
+        font-weight: 500;
+        line-height: 1.1;
+        color: var(--plum);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-title em {
+        font-style: italic;
+        color: var(--rose);
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.8;
+        color: var(--text-light);
+        max-width: 440px;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero-cta-group {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        display: inline-block;
+        padding: 0.9rem 2.2rem;
+        background: var(--plum);
+        color: white;
+        font-family: "Jost", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--rose);
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+      }
+
+      .btn-primary:hover::before {
+        transform: translateX(0);
+      }
+      .btn-primary span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn-secondary {
+        display: inline-block;
+        padding: 0.9rem 2.2rem;
+        background: transparent;
+        color: var(--plum);
+        font-family: "Jost", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: 1px solid var(--plum);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-secondary:hover {
+        background: var(--plum);
+        color: white;
+      }
+
+      .hero-visual {
+        animation: fadeUp 0.8s 0.2s ease both;
+        position: relative;
+      }
+
+      .hero-card {
+        background: var(--cream-light);
+        border: 1px solid rgba(92, 61, 94, 0.1);
+        padding: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--plum),
+          var(--rose),
+          var(--sage)
+        );
+      }
+
+      .hero-card-label {
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--rose);
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-card-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: var(--plum);
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+
+      .hero-card-body {
+        font-size: 0.88rem;
+        color: var(--text-light);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+
+      .stat-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--cream-dark);
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--plum);
+        line-height: 1;
+        margin-bottom: 0.3rem;
+      }
+
+      .stat-label {
+        font-size: 0.68rem;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-light);
+      }
+
+      /* ── HOME: WHAT I DO ── */
+      .home-pillars {
+        padding: 5% 5%;
+        background: var(--cream-light);
+        border-top: 1px solid rgba(92, 61, 94, 0.08);
+      }
+
+      .section-label {
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--rose);
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .section-label::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: var(--rose);
+      }
+
+      .section-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2rem, 3.5vw, 3rem);
+        font-weight: 500;
+        color: var(--plum);
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .section-subtitle {
+        font-size: 0.95rem;
+        color: var(--text-light);
+        max-width: 560px;
+        line-height: 1.8;
+        margin-bottom: 3rem;
+      }
+
+      .pillars-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .pillar-card {
+        padding: 2rem;
+        background: var(--cream);
+        border: 1px solid rgba(92, 61, 94, 0.08);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pillar-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--rose);
+        transition: width 0.4s ease;
+      }
+
+      .pillar-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(92, 61, 94, 0.08);
+      }
+      .pillar-card:hover::after {
+        width: 100%;
+      }
+
+      .pillar-icon {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+
+      .pillar-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--plum);
+        margin-bottom: 0.6rem;
+      }
+
+      .pillar-text {
+        font-size: 0.85rem;
+        color: var(--text-light);
+        line-height: 1.8;
+      }
+
+      /* ── HOME: WHO I SERVE ── */
+      .home-serves {
+        padding: 5% 5%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+
+      .serves-visual {
+        position: relative;
+      }
+
+      .serves-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        border: 1px solid;
+        transition: all 0.3s ease;
+        cursor: default;
+      }
+
+      .tag-plum {
+        border-color: var(--plum);
+        color: var(--plum);
+      }
+      .tag-plum:hover {
+        background: var(--plum);
+        color: white;
+      }
+      .tag-rose {
+        border-color: var(--rose);
+        color: var(--rose);
+      }
+      .tag-rose:hover {
+        background: var(--rose);
+        color: white;
+      }
+      .tag-sage {
+        border-color: var(--sage);
+        color: var(--sage);
+      }
+      .tag-sage:hover {
+        background: var(--sage);
+        color: white;
+      }
+      .tag-brown {
+        border-color: var(--brown);
+        color: var(--brown);
+      }
+      .tag-brown:hover {
+        background: var(--brown);
+        color: white;
+      }
+
+      .values-list {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .value-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+        font-size: 0.88rem;
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+
+      .value-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--rose);
+        margin-top: 0.45rem;
+        flex-shrink: 0;
+      }
+
+      /* ── ABOUT SECTION ── */
+      #about {
+        display: none;
+      }
+
+      #about.active {
+        display: block;
+      }
+
+      .about-hero {
+        padding: 5% 5% 3%;
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 6rem;
+        align-items: start;
+      }
+
+      .about-content {
+      }
+
+      .about-quote {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+        font-weight: 400;
+        font-style: italic;
+        color: var(--plum);
+        line-height: 1.5;
+        margin-bottom: 2rem;
+        padding-left: 1.5rem;
+        border-left: 2px solid var(--rose);
+      }
+
+      .about-body {
+        font-size: 0.95rem;
+        color: var(--text-light);
+        line-height: 1.9;
+        margin-bottom: 1.5rem;
+      }
+
+      .about-sidebar {
+      }
+
+      .sidebar-card {
+        background: var(--plum);
+        color: white;
+        padding: 2.5rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sidebar-card::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .sidebar-card-label {
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--rose);
+        margin-bottom: 1rem;
+      }
+
+      .sidebar-card-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+
+      .sidebar-card-text {
+        font-size: 0.84rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .values-grid {
+        padding: 4% 5%;
+        background: var(--cream-light);
+        border-top: 1px solid rgba(92, 61, 94, 0.08);
+      }
+
+      .values-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+        margin-top: 2.5rem;
+      }
+
+      .value-card {
+        padding: 1.8rem;
+        background: var(--cream);
+        border: 1px solid rgba(92, 61, 94, 0.08);
+        transition: all 0.3s ease;
+      }
+
+      .value-card:hover {
+        border-color: var(--rose);
+        transform: translateY(-3px);
+      }
+
+      .value-card-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        font-weight: 300;
+        color: var(--cream-dark);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+
+      .value-card-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--plum);
+        margin-bottom: 0.5rem;
+      }
+
+      .value-card-text {
+        font-size: 0.82rem;
+        color: var(--text-light);
+        line-height: 1.7;
+      }
+
+      /* ── SERVICES SECTION ── */
+      #services {
+        display: none;
+      }
+
+      #services.active {
+        display: block;
+      }
+
+      .services-hero {
+        padding: 5% 5% 3%;
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .packages-section {
+        padding: 0 5% 5%;
+      }
+
+      .packages-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-bottom: 4rem;
+      }
+
+      .package-card {
+        background: var(--cream-light);
+        border: 1px solid rgba(92, 61, 94, 0.1);
+        padding: 2.5rem 2rem;
+        position: relative;
+        transition: all 0.3s ease;
+        overflow: hidden;
+      }
+
+      .package-card.featured {
+        background: var(--plum);
+        border-color: var(--plum);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 60px rgba(92, 61, 94, 0.2);
+      }
+
+      .package-card:not(.featured):hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(92, 61, 94, 0.1);
+        border-color: var(--rose);
+      }
+
+      .featured-badge {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--rose);
+        color: white;
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.35rem 1.2rem;
+      }
+
+      .package-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--plum);
+        margin-bottom: 0.3rem;
+        margin-top: 0.5rem;
+      }
+
+      .package-card.featured .package-name {
+        color: white;
+      }
+
+      .package-tagline {
+        font-size: 0.78rem;
+        color: var(--text-light);
+        margin-bottom: 1.5rem;
+        font-style: italic;
+      }
+
+      .package-card.featured .package-tagline {
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .package-price {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(92, 61, 94, 0.1);
+      }
+
+      .package-card.featured .package-price {
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+
+      .price-amount {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 3rem;
+        font-weight: 600;
+        color: var(--plum);
+        line-height: 1;
+      }
+
+      .package-card.featured .price-amount {
+        color: white;
+      }
+
+      .price-currency {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-weight: 400;
+        vertical-align: top;
+        margin-top: 0.5rem;
+        display: inline-block;
+        color: var(--rose);
+      }
+
+      .price-period {
+        font-size: 0.78rem;
+        color: var(--text-light);
+        margin-top: 0.2rem;
+      }
+
+      .package-card.featured .price-period {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .package-features {
+        list-style: none;
+        margin-bottom: 2rem;
+      }
+
+      .package-features li {
+        font-size: 0.84rem;
+        color: var(--text-light);
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(92, 61, 94, 0.06);
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        line-height: 1.5;
+      }
+
+      .package-card.featured .package-features li {
+        color: rgba(255, 255, 255, 0.8);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .package-features li::before {
+        content: "✦";
+        color: var(--rose);
+        font-size: 0.6rem;
+        flex-shrink: 0;
+      }
+
+      .package-card.featured .package-features li::before {
+        color: var(--rose);
+      }
+
+      .package-btn {
+        display: block;
+        width: 100%;
+        padding: 0.9rem;
+        text-align: center;
+        font-family: "Jost", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .package-btn-outline {
+        background: transparent;
+        color: var(--plum);
+        border: 1px solid var(--plum);
+      }
+
+      .package-btn-outline:hover {
+        background: var(--plum);
+        color: white;
+      }
+
+      .package-btn-filled {
+        background: var(--rose);
+        color: white;
+      }
+
+      .package-btn-filled:hover {
+        background: white;
+        color: var(--plum);
+      }
+
+      /* Add-ons */
+      .addons-section {
+        padding: 4% 5%;
+        background: var(--cream-light);
+        border-top: 1px solid rgba(92, 61, 94, 0.08);
+      }
+
+      .addons-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .addon-card {
+        padding: 1.5rem;
+        background: var(--cream);
+        border: 1px solid rgba(92, 61, 94, 0.08);
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .addon-card:hover {
+        border-color: var(--rose);
+        transform: translateY(-3px);
+      }
+
+      .addon-icon {
+        font-size: 1.4rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .addon-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--plum);
+        margin-bottom: 0.4rem;
+      }
+
+      .addon-price {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--rose);
+        margin-bottom: 0.4rem;
+      }
+
+      .addon-text {
+        font-size: 0.76rem;
+        color: var(--text-light);
+        line-height: 1.6;
+      }
+
+      /* Process */
+      .process-section {
+        padding: 5% 5%;
+      }
+
+      .process-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+        position: relative;
+      }
+
+      .process-steps::before {
+        content: "";
+        position: absolute;
+        top: 22px;
+        left: 12%;
+        right: 12%;
+        height: 1px;
+        background: var(--cream-dark);
+      }
+
+      .process-step {
+        text-align: center;
+        position: relative;
+      }
+
+      .step-num {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--plum);
+        color: white;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .step-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--plum);
+        margin-bottom: 0.5rem;
+      }
+
+      .step-text {
+        font-size: 0.8rem;
+        color: var(--text-light);
+        line-height: 1.7;
+      }
+
+      /* ── CONTACT SECTION ── */
+      #contact {
+        display: none;
+      }
+
+      #contact.active {
+        display: block;
+      }
+
+      .contact-wrap {
+        padding: 5% 5%;
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 5rem;
+        align-items: start;
+      }
+
+      .contact-info {
+      }
+
+      .contact-tagline {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 400;
+        color: var(--plum);
+        line-height: 1.3;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-tagline em {
+        font-style: italic;
+        color: var(--rose);
+      }
+
+      .contact-body {
+        font-size: 0.9rem;
+        color: var(--text-light);
+        line-height: 1.9;
+        margin-bottom: 2.5rem;
+      }
+
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .contact-detail {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.88rem;
+        color: var(--text);
+      }
+
+      .contact-detail-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--plum-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+
+      .contact-form-wrap {
+        background: var(--cream-light);
+        padding: 3rem;
+        border: 1px solid rgba(92, 61, 94, 0.1);
+      }
+
+      .form-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--plum);
+        margin-bottom: 0.5rem;
+      }
+
+      .form-subtitle {
+        font-size: 0.84rem;
+        color: var(--text-light);
+        margin-bottom: 2rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.2rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brown);
+        margin-bottom: 0.5rem;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        background: var(--cream);
+        border: 1px solid rgba(92, 61, 94, 0.15);
+        font-family: "Jost", sans-serif;
+        font-size: 0.88rem;
+        color: var(--text);
+        transition: border-color 0.3s ease;
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--rose);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .form-submit {
+        width: 100%;
+        padding: 1rem;
+        background: var(--plum);
+        color: white;
+        font-family: "Jost", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 0.5rem;
+      }
+
+      .form-submit:hover {
+        background: var(--rose);
+      }
+
+      .form-note {
+        font-size: 0.75rem;
+        color: var(--text-light);
+        text-align: center;
+        margin-top: 1rem;
+        font-style: italic;
+      }
+
+      /* ── FAQ ── */
+      .faq-section {
+        padding: 5% 5%;
+        background: var(--plum);
+      }
+
+      .faq-section .section-label {
+        color: var(--rose);
+      }
+      .faq-section .section-label::before {
+        background: var(--rose);
+      }
+      .faq-section .section-title {
+        color: white;
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        margin-top: 3rem;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .faq-item {
+        background: var(--plum);
+        padding: 2rem;
+        transition: background 0.3s ease;
+      }
+
+      .faq-item:hover {
+        background: var(--plum-dark);
+      }
+
+      .faq-q {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 0.8rem;
+        line-height: 1.4;
+      }
+
+      .faq-a {
+        font-size: 0.84rem;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.8;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--brown);
+        color: white;
+        padding: 3rem 5% 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .footer-brand {
+      }
+
+      .footer-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: white;
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-logo span {
+        color: var(--rose);
+      }
+
+      .footer-tagline {
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.7;
+        margin-bottom: 1rem;
+      }
+
+      .footer-arabic {
+        font-size: 1.1rem;
+        color: var(--rose);
+        font-style: italic;
+      }
+
+      .footer-heading {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 1rem;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.6rem;
+      }
+
+      .footer-links button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: "Jost", sans-serif;
+        font-size: 0.84rem;
+        color: rgba(255, 255, 255, 0.65);
+        transition: color 0.3s ease;
+        padding: 0;
+        text-align: left;
+      }
+
+      .footer-links button:hover {
+        color: var(--rose);
+      }
+
+      .footer-bottom {
+        background: var(--brown);
+        padding: 1.2rem 5%;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-copy {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      .footer-insta {
+        font-size: 0.75rem;
+        color: var(--rose);
+        text-decoration: none;
+        letter-spacing: 0.08em;
+        transition: opacity 0.3s ease;
+      }
+
+      .footer-insta:hover {
+        opacity: 0.7;
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── DECORATIVE DIVIDER ── */
+      .divider {
+        text-align: center;
+        padding: 2rem;
+        color: var(--rose);
+        font-size: 1rem;
+        letter-spacing: 1rem;
+        opacity: 0.4;
+      }
+
+      /* ── RAMADAN BANNER ── */
+      .ramadan-banner {
+        background: linear-gradient(135deg, var(--plum-dark), var(--plum));
+        color: white;
+        text-align: center;
+        padding: 1rem 5%;
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+      }
+
+      .ramadan-banner span {
+        color: var(--rose);
+        font-weight: 500;
+      }
+
+      /* Scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ── SUCCESS MESSAGE ── */
+      .success-msg {
+        display: none;
+        background: var(--sage-light);
+        border: 1px solid var(--sage);
+        color: var(--text);
+        padding: 1rem;
+        text-align: center;
+        font-size: 0.88rem;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Ramadan Banner -->
+    <div class="ramadan-banner">
+      🌙 <span>Ramadan Campaign Packages Now Available</span> — Book your
+      brand's Ramadan strategy today
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+      <a href="#" class="nav-logo" onclick="showSection('home')"
+        >ihya<span> </span>socials</a
+      >
+      <ul class="nav-links">
+        <li>
+          <a
+            href="#"
+            onclick="showSection('home')"
+            class="nav-link active"
+            data-section="home"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            onclick="showSection('about')"
+            class="nav-link"
+            data-section="about"
+            >About</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            onclick="showSection('services')"
+            class="nav-link"
+            data-section="services"
+            >Services</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            onclick="showSection('contact')"
+            class="nav-link"
+            data-section="contact"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ══════════════════════ HOME ══════════════════════ -->
+    <section id="home" class="active">
+      <div class="home-hero">
+        <div class="hero-text">
+          <div class="hero-eyebrow">
+            Hi, I am Madiha. Your next Social Media Manager.
+          </div>
+          <h1 class="hero-title">
+            Reviving<br />
+            Islamic Brands<br />
+            <em>One Post at a Time</em>
+          </h1>
+          <p class="hero-subtitle">
+            Ihya socials operates on a simple belief: a brand built with halal
+            intention deserves the best marketing - we're talking of a modest,
+            values-aligned approach to bring people right at your doorstep. The
+            name Ihya ( إحياء ) means <strong>revival</strong>, and that is
+            exactly what this service is designed to do: bring your brand's
+            online presence back to life.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#" class="btn-primary" onclick="showSection('services')"
+              ><span>View Packages</span></a
+            >
+            <a href="#" class="btn-secondary" onclick="showSection('contact')"
+              >Get in Touch</a
+            >
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-card-label">What Ihya Socials Does</div>
+            <div class="hero-card-title">
+              Your Islamic brand exists for a beautiful reason. My work is to
+              make sure the world can find it.
+            </div>
+            <p class="hero-card-body">
+              As an English major with a deep love for reading, writing, and the
+              Muslim lifestyle space, I bring both professional content skills
+              and genuine cultural understanding to every brand I work with. I
+              don't need to research what resonates with your audience - I am
+              your audience.
+            </p>
+            <div class="stat-row">
+              <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Pillars of Growth</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Muslim Aligned</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">UK·USA·CA</div>
+                <div class="stat-label">Locations</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- What I Do -->
+      <div class="home-pillars reveal">
+        <div class="section-label">What I Offer</div>
+        <h2 class="section-title">Three pillars of growth</h2>
+        <p class="section-subtitle">
+          Every service I provide is built around three core disciplines —
+          strategy, branding, and content — working together to grow your brand
+          consistently.
+        </p>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">📋</div>
+            <div class="pillar-title">Content Strategy</div>
+            <p class="pillar-text">
+              A clear and strategic content plan that keeps your brand visible
+              and consistent — not just during Ramadan, but all year round.
+            </p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">🎨</div>
+            <div class="pillar-title">Brand Identity</div>
+            <p class="pillar-text">
+              Cohesive visual storytelling — from grid aesthetics to caption
+              voice — that communicates your brand's values before a customer
+              reads a single word.
+            </p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">✍🏼</div>
+            <div class="pillar-title">Content Creation</div>
+            <p class="pillar-text">
+              Beautifully designed posts, carousels, and reels — with captions
+              written by an English major who understands the language of your
+              audience.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Who I Serve -->
+      <div class="home-serves reveal">
+        <div>
+          <div class="section-label">Who I Work With</div>
+          <h2 class="section-title">Built for Muslim product brands</h2>
+          <p class="section-subtitle">
+            I specialise in working with small, purpose-driven Islamic product
+            businesses who have a beautiful product but an Instagram presence
+            that doesn't reflect it yet.
+          </p>
+          <div class="serves-tags">
+            <span class="tag tag-plum">Mushaf Brands</span>
+            <span class="tag tag-rose">Islamic Stationery</span>
+            <span class="tag tag-sage">Prayer Mat Brands</span>
+            <span class="tag tag-brown">Ramadan & Eid Gifting</span>
+            <span class="tag tag-plum">Dhikr Products</span>
+            <span class="tag tag-rose">Islamic Home Decor</span>
+          </div>
+        </div>
+        <div>
+          <div class="section-label">My Commitment</div>
+          <h2 class="section-title">Values that<br /><em>never move</em></h2>
+          <div class="values-list">
+            <div class="value-item">
+              <div class="value-dot"></div>
+              No music — vocals-only content as standard
+            </div>
+            <div class="value-item">
+              <div class="value-dot"></div>
+              No faces — fully modest content always
+            </div>
+            <div class="value-item">
+              <div class="value-dot"></div>
+              Halal-only partnerships — I decline work that conflicts with
+              Islamic values
+            </div>
+            <div class="value-item">
+              <div class="value-dot"></div>
+              Content built around your niyyah — not just your metrics
+            </div>
+            <div class="value-item">
+              <div class="value-dot"></div>
+              Honest, transparent communication at every stage
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider">✦ ✦ ✦</div>
+
+      <footer>
+        <div class="footer-brand">
+          <div class="footer-logo">ihya<span>.</span>socials</div>
+          <p class="footer-tagline">
+            Reviving Islamic product brands through content strategy & Instagram
+            growth.
+          </p>
+          <div class="footer-arabic">إحياء — Revival</div>
+        </div>
+        <div>
+          <div class="footer-heading">Navigate</div>
+          <ul class="footer-links">
+            <li><button onclick="showSection('home')">Home</button></li>
+            <li><button onclick="showSection('about')">About</button></li>
+            <li>
+              <button onclick="showSection('services')">
+                Services & Pricing
+              </button>
+            </li>
+            <li><button onclick="showSection('contact')">Contact</button></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Connect</div>
+          <ul class="footer-links">
+            <li>
+              <a
+                href="https://instagram.com/ihyasocials"
+                target="_blank"
+                class="footer-insta"
+                >@ihyasocials</a
+              >
+            </li>
+          </ul>
+        </div>
+      </footer>
+      <div class="footer-bottom">
+        <span class="footer-copy"
+          >© 2025 Ihya Socials. All rights reserved.</span
+        >
+        <span class="footer-copy">Serving UK · USA · Canada</span>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ ABOUT ══════════════════════ -->
+    <section id="about">
+      <div class="about-hero">
+        <div class="about-content">
+          <div class="section-label">About Ihya Socials</div>
+          <blockquote class="about-quote">
+            "Your Islamic brand exists for a reason. My work is to make sure the
+            world can find it."
+          </blockquote>
+          <p class="about-body">
+            Ihya Socials is a social media management service built specifically
+            for Muslim-led product brands. The name Ihya — إحياء — means
+            <b>revival</b>, and that is exactly what this service is designed to
+            do: bring your brand's online presence back to life.
+          </p>
+          <p class="about-body">
+            Many Islamic product brands have extraordinary products —
+            beautifully crafted Mushafs, thoughtfully designed prayer mats,
+            stationery built around the rhythms of Islamic life — but their
+            Instagram presence doesn't reflect that quality. The content is
+            inconsistent, the captions are rushed, and the strategy is
+            non-existent. That gap is what Ihya Socials exists to close.
+          </p>
+          <p class="about-body">
+            As an English major with a deep love for reading, writing, and the
+            Muslim lifestyle space, I bring both professional content skills and
+            genuine cultural understanding to every brand I work with. I don't
+            need to research what resonates with your audience — I am your
+            audience.
+          </p>
+          <p class="about-body">
+            Ihya Socials operates on a simple belief: a brand built with halal
+            intention deserves halal marketing — content that is honest, modest,
+            values-aligned, and genuinely valuable to the people it serves.
+          </p>
+        </div>
+
+        <div class="about-sidebar">
+          <div class="sidebar-card">
+            <div class="sidebar-card-label">The Approach</div>
+            <div class="sidebar-card-title">
+              Strategy built around the Islamic calendar
+            </div>
+            <p class="sidebar-card-text">
+              Unlike general SMMs, Ihya Socials plans your content around
+              Ramadan, Eid, Dhul Hijjah, and the full Islamic calendar — turning
+              every sacred season into a meaningful growth opportunity for your
+              brand.
+            </p>
+          </div>
+          <div class="sidebar-card" style="background: var(--rose)">
+            <div class="sidebar-card-label" style="color: white; opacity: 0.8">
+              The Difference
+            </div>
+            <div class="sidebar-card-title">
+              Cultural authenticity you can't outsource
+            </div>
+            <p class="sidebar-card-text">
+              A general SMM can learn social media strategy. They cannot learn
+              what it means to build a brand for the Muslim community, for the
+              sake of Allah, in a non-Muslim majority country. That
+              understanding comes from lived experience — and it shows in every
+              piece of content.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Values -->
+      <div class="values-grid reveal">
+        <div class="section-label">Non-Negotiables</div>
+        <h2 class="section-title">What Ihya Socials stands for</h2>
+        <div class="values-cards">
+          <div class="value-card">
+            <div class="value-card-num">01</div>
+            <div class="value-card-title">Halal Content Always</div>
+            <p class="value-card-text">
+              Every piece of content — every caption, every visual — is created
+              within the boundaries of Islamic values. No exceptions, no
+              compromises.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-card-num">02</div>
+            <div class="value-card-title">Modest by Default</div>
+            <p class="value-card-text">
+              No faces, no music. Content is created with full modesty as the
+              standard — not an accommodation, but the foundation.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-card-num">03</div>
+            <div class="value-card-title">Niyyah First</div>
+            <p class="value-card-text">
+              I only work with brands whose products genuinely serve and add
+              value to the Muslim community. Your intention and mine must be
+              aligned.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-card-num">04</div>
+            <div class="value-card-title">Honest Communication</div>
+            <p class="value-card-text">
+              Clear expectations, transparent reporting, and honest feedback —
+              always. No overpromising, no vanity metrics, no wasted budget.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-card-num">05</div>
+            <div class="value-card-title">Intentional Strategy</div>
+            <p class="value-card-text">
+              No random posting. Every piece of content serves a clear purpose —
+              attract, nurture, or convert — within a coherent monthly strategy.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-card-num">06</div>
+            <div class="value-card-title">Barakah in the Work</div>
+            <p class="value-card-text">
+              Every strategy begins with bismillah. I believe the barakah in how
+              we work matters as much as the results we achieve.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="footer-brand">
+          <div class="footer-logo">ihya<span>.</span>socials</div>
+          <p class="footer-tagline">
+            Reviving Islamic product brands through content strategy & Instagram
+            growth.
+          </p>
+          <div class="footer-arabic">إحياء — Revival</div>
+        </div>
+        <div>
+          <div class="footer-heading">Navigate</div>
+          <ul class="footer-links">
+            <li><button onclick="showSection('home')">Home</button></li>
+            <li><button onclick="showSection('about')">About</button></li>
+            <li>
+              <button onclick="showSection('services')">
+                Services & Pricing
+              </button>
+            </li>
+            <li><button onclick="showSection('contact')">Contact</button></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Connect</div>
+          <ul class="footer-links">
+            <li>
+              <a
+                href="https://instagram.com/ihyasocials"
+                target="_blank"
+                class="footer-insta"
+                >@ihyasocials</a
+              >
+            </li>
+          </ul>
+        </div>
+      </footer>
+      <div class="footer-bottom">
+        <span class="footer-copy"
+          >© 2025 Ihya Socials. All rights reserved.</span
+        >
+        <span class="footer-copy">Serving UK · USA · Canada</span>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ SERVICES ══════════════════════ -->
+    <section id="services">
+      <div class="services-hero">
+        <div class="section-label" style="justify-content: center">
+          Packages & Pricing
+        </div>
+        <h2 class="section-title">
+          Straightforward pricing.<br />No hidden fees.
+        </h2>
+        <p class="section-subtitle" style="margin: 0 auto 1rem">
+          Every package is a monthly retainer. Choose the level of support that
+          fits your brand's current stage and budget.
+        </p>
+      </div>
+
+      <div class="packages-section">
+        <div class="packages-grid reveal">
+          <!-- Starter -->
+          <div class="package-card">
+            <div class="package-name">Starter</div>
+            <div class="package-tagline">
+              For brands taking their first step
+            </div>
+            <div class="package-price">
+              <div>
+                <span class="price-currency">$</span
+                ><span class="price-amount">120</span>
+              </div>
+              <div class="price-period">per month · billed monthly</div>
+            </div>
+            <ul class="package-features">
+              <li>8 feed posts per month</li>
+              <li>Captions written for every post</li>
+              <li>Post scheduling via Buffer/Later</li>
+              <li>Basic monthly content calendar</li>
+              <li>Hashtag research & strategy</li>
+              <li>1 platform (Instagram)</li>
+              <li>Email support</li>
+            </ul>
+            <a
+              href="#"
+              class="package-btn package-btn-outline"
+              onclick="showSection('contact')"
+              >Get Started</a
+            >
+          </div>
+
+          <!-- Growth (Featured) -->
+          <div class="package-card featured">
+            <div class="featured-badge">Most Popular</div>
+            <div class="package-name">Growth</div>
+            <div class="package-tagline">
+              For brands ready to grow consistently
+            </div>
+            <div class="package-price">
+              <div>
+                <span class="price-currency" style="color: var(--rose)">$</span
+                ><span class="price-amount">220</span>
+              </div>
+              <div class="price-period">per month · billed monthly</div>
+            </div>
+            <ul class="package-features">
+              <li>12 feed posts per month</li>
+              <li>Captions + hooks for every post</li>
+              <li>4 story sets per week</li>
+              <li>Full monthly content calendar</li>
+              <li>Hashtag research & strategy</li>
+              <li>1 platform (Instagram)</li>
+              <li>Monthly performance report</li>
+              <li>Islamic calendar content planning</li>
+              <li>Priority WhatsApp support</li>
+            </ul>
+            <a
+              href="#"
+              class="package-btn package-btn-filled"
+              onclick="showSection('contact')"
+              >Get Started</a
+            >
+          </div>
+
+          <!-- Premium -->
+          <div class="package-card">
+            <div class="package-name">Premium</div>
+            <div class="package-tagline">For brands serious about scale</div>
+            <div class="package-price">
+              <div>
+                <span class="price-currency">$</span
+                ><span class="price-amount">380</span>
+              </div>
+              <div class="price-period">per month · billed monthly</div>
+            </div>
+            <ul class="package-features">
+              <li>16 feed posts per month</li>
+              <li>2 reels per month</li>
+              <li>Daily story content</li>
+              <li>Full content calendar & strategy</li>
+              <li>Caption writing + engagement</li>
+              <li>Comment & DM management</li>
+              <li>Monthly strategy call</li>
+              <li>Detailed analytics report</li>
+              <li>Ramadan campaign planning included</li>
+              <li>Priority WhatsApp support</li>
+            </ul>
+            <a
+              href="#"
+              class="package-btn package-btn-outline"
+              onclick="showSection('contact')"
+              >Get Started</a
+            >
+          </div>
+        </div>
+
+        <p
+          style="
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 1rem;
+          "
+        >
+          All prices in USD. UK & Canada clients quoted in GBP/CAD at equivalent
+          rates. First month available at introductory rate — enquire for
+          details.
+        </p>
+      </div>
+
+      <!-- Add-ons -->
+      <div class="addons-section reveal">
+        <div class="section-label">Add-On Services</div>
+        <h2 class="section-title">Need something specific?</h2>
+        <p class="section-subtitle">
+          Add any of these to your existing package or book as a standalone
+          service.
+        </p>
+        <div class="addons-grid">
+          <div class="addon-card">
+            <div class="addon-icon">🌙</div>
+            <div class="addon-title">Ramadan Campaign</div>
+            <div class="addon-price">From $100</div>
+            <p class="addon-text">
+              A dedicated Ramadan content strategy and calendar, planned 6–8
+              weeks in advance.
+            </p>
+          </div>
+          <div class="addon-card">
+            <div class="addon-icon">🔍</div>
+            <div class="addon-title">Instagram Audit</div>
+            <div class="addon-price">$60 one-time</div>
+            <p class="addon-text">
+              A full written audit of your current Instagram with actionable
+              recommendations.
+            </p>
+          </div>
+          <div class="addon-card">
+            <div class="addon-icon">✍🏼</div>
+            <div class="addon-title">Caption Writing</div>
+            <div class="addon-price">$40 / 8 captions</div>
+            <p class="addon-text">
+              Captions only — ideal if you handle your own visuals but need
+              stronger copy.
+            </p>
+          </div>
+          <div class="addon-card">
+            <div class="addon-icon">📋</div>
+            <div class="addon-title">Content Calendar</div>
+            <div class="addon-price">$50 one-time</div>
+            <p class="addon-text">
+              A full month content calendar you can implement yourself, with
+              topic ideas and post formats.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Process -->
+      <div class="process-section reveal">
+        <div class="section-label">How It Works</div>
+        <h2 class="section-title">
+          From enquiry to first post<br />in under a week
+        </h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-num">1</div>
+            <div class="step-title">Discovery Call</div>
+            <p class="step-text">
+              A free 15-minute call to understand your brand, goals, and which
+              package fits best.
+            </p>
+          </div>
+          <div class="process-step">
+            <div class="step-num">2</div>
+            <div class="step-title">Brand Onboarding</div>
+            <p class="step-text">
+              You complete a simple brand questionnaire. I build your strategy
+              and content calendar.
+            </p>
+          </div>
+          <div class="process-step">
+            <div class="step-num">3</div>
+            <div class="step-title">Content Creation</div>
+            <p class="step-text">
+              I create your posts, captions, and stories. You review and approve
+              before anything goes live.
+            </p>
+          </div>
+          <div class="process-step">
+            <div class="step-num">4</div>
+            <div class="step-title">Go Live & Grow</div>
+            <p class="step-text">
+              Content is scheduled and published. I track performance and refine
+              strategy monthly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="faq-section reveal">
+        <div class="section-label">Questions</div>
+        <h2 class="section-title">Frequently asked</h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <div class="faq-q">Do I need to provide my own photos?</div>
+            <p class="faq-a">
+              Yes — you provide raw photos and videos of your products. I handle
+              editing, design, captions, and scheduling. I will give you a
+              simple shot list each month so you know exactly what to capture.
+            </p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">How do I send you my content?</div>
+            <p class="faq-a">
+              Via a shared Google Drive folder or WhatsApp — whichever you
+              prefer. I make the process as simple as possible for you.
+            </p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              Will the content be reviewed before posting?
+            </div>
+            <p class="faq-a">
+              Always. Every post is sent to you for approval before it goes
+              live. Nothing is published without your sign-off.
+            </p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              Do you work with brands outside UK, US, and Canada?
+            </div>
+            <p class="faq-a">
+              Currently I specialise in English-language content for brands
+              based in the UK, US, and Canada. If you're based elsewhere but
+              sell to English-speaking markets, get in touch to discuss.
+            </p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Is there a minimum contract length?</div>
+            <p class="faq-a">
+              Packages are month-to-month with no long-term contract required. I
+              believe results should earn your continued trust — not a contract.
+            </p>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">How are payments made?</div>
+            <p class="faq-a">
+              Via PayPal, Wise, or Payoneer — whichever works best for you.
+              Payment is due at the start of each month before work begins.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="footer-brand">
+          <div class="footer-logo">ihya<span>.</span>socials</div>
+          <p class="footer-tagline">
+            Reviving Islamic product brands through content strategy & Instagram
+            growth.
+          </p>
+          <div class="footer-arabic">إحياء — Revival</div>
+        </div>
+        <div>
+          <div class="footer-heading">Navigate</div>
+          <ul class="footer-links">
+            <li><button onclick="showSection('home')">Home</button></li>
+            <li><button onclick="showSection('about')">About</button></li>
+            <li>
+              <button onclick="showSection('services')">
+                Services & Pricing
+              </button>
+            </li>
+            <li><button onclick="showSection('contact')">Contact</button></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Connect</div>
+          <ul class="footer-links">
+            <li>
+              <a
+                href="https://instagram.com/ihyasocials"
+                target="_blank"
+                class="footer-insta"
+                >@ihyasocials</a
+              >
+            </li>
+          </ul>
+        </div>
+      </footer>
+      <div class="footer-bottom">
+        <span class="footer-copy"
+          >© 2025 Ihya Socials. All rights reserved.</span
+        >
+        <span class="footer-copy">Serving UK · USA · Canada</span>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ CONTACT ══════════════════════ -->
+    <section id="contact">
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <div class="section-label">Get in Touch</div>
+          <h2 class="contact-tagline">
+            Ready to <em>revive</em> your brand's Instagram?
+          </h2>
+          <p class="contact-body">
+            Fill in the form and I will get back to you within 48 hours,
+            insha'Allah. If you'd prefer, you can also DM me directly on
+            Instagram at @ihyasocials.
+          </p>
+          <p class="contact-body">
+            Not sure which package is right for you? Just tell me a little about
+            your brand and I'll recommend the best fit on our discovery call.
+          </p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📸</div>
+              <span>@ihyasocials on Instagram</span>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">🌍</div>
+              <span>Serving UK · USA · Canada</span>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">⏱</div>
+              <span>Response within 48 hours</span>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📞</div>
+              <span>Free 15-min discovery call available</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap">
+          <div class="form-title">Send an Enquiry</div>
+          <p class="form-subtitle">
+            Tell me about your brand and what you're looking for.
+          </p>
+          <div id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" placeholder="Sister Fatima" id="fname" />
+              </div>
+              <div class="form-group">
+                <label>Brand Name</label>
+                <input type="text" placeholder="Your brand name" id="brand" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Instagram Handle</label>
+              <input type="text" placeholder="@yourbrand" />
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="you@example.com" id="email" />
+            </div>
+            <div class="form-group">
+              <label>Package Interest</label>
+              <select>
+                <option value="">Select a package...</option>
+                <option>Starter — $120/month</option>
+                <option>Growth — $220/month</option>
+                <option>Premium — $380/month</option>
+                <option>Add-on service only</option>
+                <option>Not sure yet — need advice</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tell me about your brand</label>
+              <textarea
+                placeholder="What do you sell? Where are you based? What's your biggest Instagram challenge right now?"
+              ></textarea>
+            </div>
+            <button class="form-submit" onclick="submitForm()">
+              Send Enquiry — DM 'IHYA' on Instagram
+            </button>
+            <p class="form-note">
+              This form sends directly to @ihyasocials. Alternatively DM the
+              word 'IHYA' on Instagram for a faster response.
+            </p>
+            <div class="success-msg" id="successMsg">
+              JazakAllah khair for reaching out! I'll be in touch within 48
+              hours, insha'Allah. 📿
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="footer-brand">
+          <div class="footer-logo">ihya<span>.</span>socials</div>
+          <p class="footer-tagline">
+            Reviving Islamic product brands through content strategy & Instagram
+            growth.
+          </p>
+          <div class="footer-arabic">إحياء — Revival</div>
+        </div>
+        <div>
+          <div class="footer-heading">Navigate</div>
+          <ul class="footer-links">
+            <li><button onclick="showSection('home')">Home</button></li>
+            <li><button onclick="showSection('about')">About</button></li>
+            <li>
+              <button onclick="showSection('services')">
+                Services & Pricing
+              </button>
+            </li>
+            <li><button onclick="showSection('contact')">Contact</button></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Connect</div>
+          <ul class="footer-links">
+            <li>
+              <a
+                href="https://instagram.com/ihyasocials"
+                target="_blank"
+                class="footer-insta"
+                >@ihyasocials</a
+              >
+            </li>
+          </ul>
+        </div>
+      </footer>
+      <div class="footer-bottom">
+        <span class="footer-copy"
+          >© 2025 Ihya Socials. All rights reserved.</span
+        >
+        <span class="footer-copy">Serving UK · USA · Canada</span>
+      </div>
+    </section>
+
+    <script>
+      // ── NAVIGATION ──
+      function showSection(id) {
+        document
+          .querySelectorAll("section")
+          .forEach((s) => s.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+        document.querySelectorAll(".nav-link").forEach((a) => {
+          a.classList.toggle("active", a.dataset.section === id);
+        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setTimeout(initReveal, 100);
+        return false;
+      }
+
+      // ── SCROLL EFFECT ON NAV ──
+      window.addEventListener("scroll", () => {
+        document
+          .getElementById("navbar")
+          .classList.toggle("scrolled", window.scrollY > 20);
+        initReveal();
+      });
+
+      // ── REVEAL ON SCROLL ──
+      function initReveal() {
+        document.querySelectorAll(".reveal").forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 60) el.classList.add("visible");
+        });
+      }
+
+      // ── FORM SUBMIT ──
+      function submitForm() {
+        const name = document.getElementById("fname").value;
+        const email = document.getElementById("email").value;
+        if (!name || !email) {
+          alert("Please fill in your name and email address.");
+          return;
+        }
+        document.getElementById("successMsg").style.display = "block";
+        document.querySelector(".form-submit").style.display = "none";
+      }
+
+      // Init on load
+      window.addEventListener("load", () => {
+        initReveal();
+      });
+    </script>
+  </body>
+</html>

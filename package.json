@@ -1,0 +1,8 @@
+{
+  "name": "ihya-socials-site",
+  "private": true,
+  "scripts": {
+    "dev": "node dev-server.js",
+    "start": "node dev-server.js"
+  }
+}
